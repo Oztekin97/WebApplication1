@@ -1,0 +1,25 @@
+﻿@model IEnumerable<LibraryModel.Models.Kitap>
+@{
+    ViewData["Title"] = "ABC";
+}
+<div class="border p-4 bg-white">
+    <div>
+        @if (Model.Count() > 0)
+        {
+            <table class="table table-striped border">
+                <tr class="table-secondary">
+                    <th>Kitap Ad</th>
+                    <th>Fiyat</th>
+                    <th></th>
+                </tr>
+                @foreach (var item in Model)
+                {
+            <tr>
+                <td>@item.KitapAd</td>
+                <td>@item.Fiyat</td>
+            </tr>
+                }
+                </table>
+        }
+            </div>
+    </div>

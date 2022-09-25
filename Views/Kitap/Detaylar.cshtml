@@ -1,0 +1,72 @@
+﻿@model LibraryModel.ViewModels.KitapVM
+@{
+    var Title = "Kitap Detayı Oluştur";
+}
+<form method="post">
+    <div class="row p-3 border">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Kitap.KitapId" />
+        <input type="hidden" asp-for="Kitap.KitapDetayi.KitapDetayId" />
+        @if (Model.Kitap != null || Model.Kitap.KitapId!=0 || Model.Kitap.KitapDetayi.KitapDetayId!=0)
+        {
+            //Düzenleme işlemi için başlık
+            Title = "Kitap Detaylarını Düzenle";
+        }
+        <div class="col-12 border-bottom">
+            <h2 class="text-primary">@Title</h2>
+        </div>
+        <div class="col-8 pt-4">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Kitap.KitapAd"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Kitap.KitapAd" class="form-control" />
+                </div>
+                <div class="col-4">
+                    <label asp-for="Kitap.KitapDetayi.BolumSayisi"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Kitap.KitapDetayi.BolumSayisi" class="form-control" />
+                    <span asp-validation-for="Kitap.KitapDetayi.BolumSayisi" class="text-danger"></span>
+                </div>
+                <div class="col-4">
+                    <label asp-for="Kitap.KitapDetayi.KitapSayfaSayisi"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Kitap.KitapDetayi.KitapSayfaSayisi" class="form-control" />
+                    <span asp-validation-for="Kitap.KitapDetayi.KitapSayfaSayisi" class="text-danger"></span>
+                </div>
+                <div class="col-4">
+                    <label asp-for="Kitap.KitapDetayi.agirlik"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Kitap.KitapDetayi.agirlik" class="form-control" />
+                    <span asp-validation-for="Kitap.KitapDetayi.agirlik" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4 offset-4">
+                    @if (Model.Kitap != null || Model.Kitap.KitapId != 0 || Model.Kitap.KitapDetayi.KitapDetayId != 0)
+                    {
+                        <button type="submit" class="btn btn-primary form-control">Bilgileri Güncelle</button>
+                    }
+                    else
+                    {
+                <button type="submit" class="btn btn-primary form-control">Bilgileri Oluştur</button>
+                    }
+                </div>
+            </div>
+            <div class="col-4">
+                <a asp-action="Index" class="btn btn-success form-control">Listeye Geri Dön</a>
+            </div>
+
+        </div>
+    </div>
+</form>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
+
+
+

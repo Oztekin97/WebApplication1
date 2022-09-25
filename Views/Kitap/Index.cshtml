@@ -1,0 +1,59 @@
+﻿@model IEnumerable<LibraryModel.Models.Kitap>
+<br />
+<br />
+<div class="border p-4 bg-white">
+    <div class="row">
+        <div class="col-8">
+            <h2 class="text-info">Kitaplar Listesi</h2>
+        </div>
+        <div class="col-2">
+            <a asp-action="ABC" class="btn btn-warning form-control">ABC</a>
+        </div>
+        <div class="col-3 text-right">
+            <a asp-action="Update_Insert" class="btn btn-info form-control">Kitap Oluştur</a>
+        </div>
+    </div>
+    <br />
+    <div>
+        @if (Model.Count() > 0)
+        {
+        <table class="table table-striped border">
+            <tr class="table-secondary">
+                <th>Kitap Ad</th>
+                <th>Fiyat</th>
+                <th>YayınEvi</th>
+                <th></th>
+            </tr>
+            @**@
+            @foreach (var item in Model)
+            {
+        <tr>
+            <td>@item.KitapAd</td>
+            <td>@item.Fiyat</td>
+            <td>@item.YayinEvleri.YayinEviAd</td>
+        </tr>
+                @*
+                @{ var yazarlar = "";}
+                @foreach (var yzrlr in item.KitapYazarlar)
+                {
+                    yazarlar += yzrlr.Yazar.AdSoyad + " , ";
+                }@yazarlar.Trim().TrimEnd(',')
+                </td>
+                </tr>
+                *@
+        <tr>
+            <td>
+                <a class="btn btn-primary text-white" asp-action="Update_Insert" asp-route-Id="@item.KitapId">Duzenle</a>
+                <a class="btn btn-info text-white" asp-action="Detaylar" asp-route-Id="@item.KitapId">Detaylar</a>
+                <a class="btn btn-danger text-white" asp-action="Sil" asp-route-Id="@item.KitapId">Sil</a>
+            </td>
+        </tr>
+    }
+        </table>
+        }
+        else
+        {
+            <p> !!Listelenecek herhangi bir kitap kaydı bulunamadı!! </p>
+        }
+    </div>
+</div>
